@@ -1,0 +1,120 @@
+tests:
+  - name: ping
+    desc: "Send ICMP echo request packets to the target."
+    command: hping3
+    args: ['-c', '2', '-S', '{ip_address}']
+    
+  - name: traceroute
+    desc: "Perform a traceroute to the target."
+    command: hping3
+    args: ['--traceroute', '-V', '-c', '2', '{ip_address}']
+    
+  - name: tcp_syn_scan
+    desc: "Perform a TCP SYN scan on port 80 of the target."
+    command: hping3
+    args: ['-S', '-p', '80', '-c', '2', '{ip_address}']
+    
+  - name: syn_scan
+    desc: "Perform a TCP SYN scan on ports 1-1000 of the target."
+    command: hping3
+    args: ['-S', '-p', '1-1000', '-c', '2', '{ip_address}']
+    
+  - name: fragmentation_test
+    desc: "Perform fragmentation test on the target."
+    command: hping3
+    args: ['--frag', '-c', '4', '{ip_address}']
+    
+  - name: bandwidth_test
+    desc: "Measure bandwidth using UDP packets on port 12345."
+    command: hping3
+    args: ['--udp', '-p', '12345', '-d', '1000','-c', '4','{ip_address}']
+    
+  - name: stealth_scan
+    desc: "Perform a stealth scan on ports 1-1000 of the target."
+    command: hping3
+    args: ['-S', '-p', '1-1000', '-c', '4','{ip_address}']
+    
+  - name: path_mtu_discovery
+    desc: "Perform Path MTU discovery on the target."
+    command: hping3
+    args: ['--mtu','1500', '-c', '4', '{ip_address}']
+    
+  - name: icmp_tunneling
+    desc: "Perform ICMP tunneling with 'Hello, world!' as data."
+    command: hping3
+    args: ['--icmp', '--data', 'Hello, world!','-c', '4', '{ip_address}']
+    
+  - name: advanced_network_analysis
+    desc: "Perform advanced network analysis on port 80."
+    command: hping3
+    args: ['-c', '1', '-S', '-p', '80', '-c', '4','{ip_address}']
+    
+  - name: syn_scan_with_address
+    desc: "Perform a TCP SYN scan with source and target IP set."
+    command: hping3
+    args: ['-S', '-p', '80', '127.0.0.1', '-a', '127.0.0.1', '-c', '5']
+    
+  - name: icmp_ping
+    desc: "Perform ICMP ping with 10 packets."
+    command: hping3
+    args: ['--icmp', '-c', '10', '{ip_address}']
+    
+  - name: icmp_ping_verbose
+    desc: "Perform ICMP ping with verbose output."
+    command: hping3
+    args: ['--icmp', '-c', '8', '-V', '{ip_address}']
+    
+  - name: icmp_ping_with_data
+    desc: "Perform ICMP ping with custom data size (300 bytes)."
+    command: hping3
+    args: ['--icmp', '-c', '4', '-d', '300', '{ip_address}']
+    
+  - name: icmp_ping_with_ttl
+    desc: "Perform ICMP ping with Time-to-Live (TTL) set to 56."
+    command: hping3
+    args: ['--icmp', '-c', '4', '-t', '56', '{ip_address}']
+    
+  - name: syn_scan_port_increment
+    desc: "Perform a TCP SYN scan with port increment."
+    command: hping3
+    args: ['-S', '-p', '80', '-c', '5','{ip_address}']
+    
+  - name: syn_scan_with_source_port
+    desc: "Perform a TCP SYN scan with custom source port."
+    command: hping3
+    args: ['-S', '-p', '80', '-s', '1234','-c', '5', '{ip_address}']
+    
+  - name: syn_scan_port_increment_multiple
+    desc: "Perform a TCP SYN scan with multiple port increments."
+    command: hping3
+    args: ['-S', '-p', '++21','-c', '5', '{ip_address}']
+    
+  - name: tcp_fin_scan
+    desc: "Perform a TCP FIN scan on port 80."
+    command: hping3
+    args: ['-p', '80', '-s', '1234', '-F','-c', '5', '{ip_address}']
+    
+  - name: tcp_ack_scan
+    desc: "Perform a TCP ACK scan on port 80."
+    command: hping3
+    args: ['-p', '80', '-s', '1234', '-A', '-c', '5','{ip_address}']
+    
+  - name: xmas_scan
+    desc: "Perform an Xmas scan on port 80."
+    command: hping3
+    args: ['-p', '80', '-s', '1234', '-FUP', '-d', '200', '-c', '5','{ip_address}']
+    
+  - name: mtu_discovery
+    desc: "Perform MTU discovery on port 80."
+    command: hping3
+    args: ['-p', '80', '-s', '1234', '-Y', '--mtu', '8', '-c', '5','{ip_address}']
+
+  - name: tcp_syn_with_timestamp
+    desc: "Send TCP SYN packets with TCP timestamp option to port 80."
+    command: hping3
+    args: ['-S', '-p', '80', '--tcp-timestamp', '-c', '5', '{ip_address}']
+
+  - name: icmp_ping_with_fragmentation
+    desc: "Send ICMP echo request packets with fragmentation flag set."
+    command: hping3
+    args: ['-F', '-c', '10', '{ip_address}']
